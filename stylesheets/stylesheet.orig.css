@@ -477,22 +477,3 @@ footer a:hover {
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {}
-
-/* From Helpouts */
-
-.indiv-photo {
-  height:200px;
-}
-
-.left-col {
-  display:inline-block;
-  float:left;  
-  width:300px;
-  background:blue;
-}
-
-.right-col {
-  display:inline-block;
-  width:200px;
-  background:orange;
-}
