@@ -478,7 +478,7 @@ footer a:hover {
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {}
 
-/* From Helpouts */
+/* From Helpouts - Drew 
 
 .indiv-photo {
   height:200px;
@@ -496,3 +496,24 @@ footer a:hover {
   width:200px;
   background:orange;
 }
+
+*/
+
+
+/*---------------------- JP-----------------------*/
+.indiv-photo {
+  height:200px;
+}
+/* code copied from http://www.thinkful.com/compiled/learn.css 
+.terminal-block{background-color:#000;border-radius:8px;margin-top:10px;margin-bottom:30px;margin-right:40px;padding:1em;padding-bottom:0}.terminal-block .terminal-code-text{padding-bottom:.8em}
+.terminal-printout-text{color:#235a7c;font-style:italic;font-weight:bold;font-family:courier;font-size:1.3em}
+.terminal-code-text{color:#69cc93;font-family:courier;font-size:1.3em}
+*/
+
+
+.terminal-block{background-color:#0040FF;border-radius:8px;margin-top:10px;margin-bottom:30px;margin-right:40px;padding:1em;padding-bottom:0}.terminal-block .terminal-code-text{padding-bottom:.8em}
+.terminal-printout-text{color:#FFFFFF;font-style:bold;font-weight:bold;font-family:courier;font-size:1.3em}
+.terminal-code-text{color:#69cc93;font-family:courier;font-size:1.3em}
+
+
+
