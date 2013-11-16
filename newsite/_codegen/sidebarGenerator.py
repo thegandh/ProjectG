@@ -1,10 +1,8 @@
 #!/usr/bin/python
 
-import allData
+import csv
 # Using a template, generate the hallOfShame.html file
 # to be put under the _includes directory
-
-hallMembers = allData.allData()
 
 sideTemplate = """
 <div class="row">
@@ -17,8 +15,15 @@ sideTemplate = """
 </div>
 <br />
 """
-
 with open('../_includes/hallOfShame.html','w') as hallOfShame:
+    hallOfShame.write('')
+with open('members.csv', 'rb') as csvFile:
+    hallMembers = csv.reader(csvFile, delimiter="|", quotechar='"')
     for member in hallMembers:
-        hallOfShame.write( sideTemplate%(member, member, hallMembers[member]['name']))
+        memberId = member[0]
+        name = member[1]
+        bio = member[2]
+ 
+        with open('../_includes/hallOfShame.html','a') as hallOfShame:
+            hallOfShame.write( sideTemplate%(memberId, memberId, name))
 

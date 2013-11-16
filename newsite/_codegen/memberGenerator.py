@@ -1,9 +1,7 @@
 #!/usr/bin/python
 
-import allData
+import csv
 # Using a template, generate the person files 
-
-hallMembers = allData.allData()
 
 personTemplate = """---
 title: %s
@@ -13,6 +11,11 @@ pic: "%s.jpg"
 ---
 """
 
-for member in hallMembers:
-    with open ('../%s.html'%member, 'w') as memberFile:
-        memberFile.write(personTemplate%(hallMembers[member]['name'], hallMembers[member]['bio'], member))
+with open('members.csv', 'rb') as csvFile:
+    hallMembers = csv.reader(csvFile, delimiter="|", quotechar='"')
+    for member in hallMembers:
+        memberId = member[0]
+        name = member[1]
+        bio = member[2]
+        with open ('../%s.html'%memberId, 'w') as memberFile:
+            memberFile.write(personTemplate%(name, bio, memberId))
