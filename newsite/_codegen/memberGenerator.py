@@ -11,7 +11,7 @@ pic: "%s.jpg"
 ---
 """
 
-with open('members.csv', 'rb') as csvFile:
+with open('../_data/members.csv', 'rb') as csvFile:
     hallMembers = csv.reader(csvFile, delimiter="|", quotechar='"')
     for member in hallMembers:
         memberId = member[0]

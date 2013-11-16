@@ -26,7 +26,7 @@ faqTemplate = """
 
 with open('../about.html','w') as about:
     about.write('')
-with open('faq.csv', 'rb') as csvFile:
+with open('../_data/faq.csv', 'rb') as csvFile:
     faq = csv.reader(csvFile, delimiter="|", quotechar='"')
     faqCopy = []
     with open('../about.html','a') as about:
@@ -40,11 +40,9 @@ with open('faq.csv', 'rb') as csvFile:
         about.write('</ul>\n\n')
 
         ctr = 0
-        print "NOW"
         for qa in faqCopy:
             ctr += 1
             question = qa[0]
             answer = qa[1]
-            print question
             about.write(faqTemplate%(ctr,question,answer))
 
