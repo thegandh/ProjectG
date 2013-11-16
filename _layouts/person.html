@@ -1,0 +1,15 @@
+{% include header.html %}
+
+<h1>{{ page.title }}</h1>
+<div class="row">
+  <div class="col-md-3">
+    <img src="/images/{{ page.pic }}" class="img-responsive" />
+  </div>
+  <div class="col-md-9">
+    <p>{{ page.bio }}</p>
+  </div>
+</div>
+<div class="row">
+  {{content}}
+</div>
+{% include footer.html %}
