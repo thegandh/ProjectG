@@ -33,7 +33,8 @@
 
 body {
   padding-top: 100px;
-  font-family: 'ProximaNova-Regular', Helvetica, sans-serif;
+  font-family: georgia, "times new roman", times, serif;
+  font-size: 175%;
 }
 
 .navbar-inner {
