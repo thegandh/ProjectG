@@ -3,6 +3,9 @@
 import csv
 # Using a template, generate the about.html file
 
+DELIMITER='|'
+QUOTECHAR='^'
+
 faqHeader = """---
 layout: default
 title: About
@@ -27,7 +30,7 @@ faqTemplate = """
 with open('../about.html','w') as about:
     about.write('')
 with open('../_data/faq.csv', 'rb') as csvFile:
-    faq = csv.reader(csvFile, delimiter="|", quotechar='"')
+    faq = csv.reader(csvFile, delimiter=DELIMITER, quotechar=QUOTECHAR)
     faqCopy = []
     with open('../about.html','a') as about:
         about.write(faqHeader)

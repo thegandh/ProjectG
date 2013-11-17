@@ -3,6 +3,9 @@
 import csv
 # Using a template, generate the person files 
 
+QUOTECHAR='^'
+DELIMITER='|'
+
 personHeader = """---
 title: %s
 layout: person
@@ -10,18 +13,26 @@ bio: %s
 pic: "%s.jpg"
 ---
 
-<ul>
+  <div class="col-md-8 col-md-offset-1">
+    <ul>
+"""
+
+personFooter = """
+    </ul>
+  </div>
+  <div class="col-md-3">&nbsp;</div>
 """
 
 gandhTemplate = """
     <li>
       <p class="lead">%s</p>
-      <p>%s</p> <a href="sources.html#%s">%s</a>
+      <p>%s</p> <a href="sources.html#%s">Source</a>
     </li>
+    <br />
 """
 
 with open('../_data/members.csv', 'rb') as csvFile:
-    hallMembers = csv.reader(csvFile, delimiter="|", quotechar='"')
+    hallMembers = csv.reader(csvFile, delimiter=DELIMITER, quotechar=QUOTECHAR)
     for member in hallMembers:
         memberId = member[0]
         name = member[1]
@@ -31,11 +42,13 @@ with open('../_data/members.csv', 'rb') as csvFile:
 
             try:
                 with open ('../_data/%s.csv'%(memberId), 'rb') as detailFile:
-                    gandh = csv.reader(detailFile, delimiter="|", quotechar='"')
+                    gandh = csv.reader(detailFile, delimiter=DELIMITER, quotechar=QUOTECHAR)
                     for line in gandh:
                         point = line[0]
                         blurb = line[1]
                         source = line[2]
-                        memberFile.write(gandhTemplate%(point, blurb, source, source))
+                        memberFile.write(gandhTemplate%(point, blurb, source))
+                memberFile.write(personFooter)
+
             except:
                 dummy=1

@@ -3,9 +3,6 @@
 import csv
 # Using a template, generate the source.html file
 
-DELIMITER='|'
-QUOTECHAR='^'
-
 sourceHeader = """---
 layout: default
 title: Sources
@@ -23,18 +20,18 @@ sourceFooter = """
 </div>
 """
 
-sourceTemplate = """<li> <a name="%s">[%s]</a> <i>%s</i> %s </li> \n """
+sourceTemplate = """<li> <a name="%s">[%s]</a> <i>%s</i> %s </li> """
 
 with open('../sources.html','w') as source:
     source.write('')
 with open('../_data/sources.csv', 'rb') as csvFile:
-    source = csv.reader(csvFile, delimiter=DELIMITER, quotechar=QUOTECHAR)
-    source = sorted(source, key=lambda tag: tag[0])
+    source = csv.reader(csvFile, delimiter="|", quotechar='"')
     with open('../sources.html','a') as sourceFile:
         sourceFile.write(sourceHeader)
         for src in source:
-            shortKey    = src[0]
-            title       = src[1]
-            author      = src[2]
-            sourceFile.write(sourceTemplate%(shortKey, shortKey, title, author))
+            anchorName  = src[0]
+            shortKey    = src[1]
+            title       = src[2]
+            author      = src[3]
+            sourceFile.write(sourceTemplate%(anchorName, shortKey, title, author))
         sourceFile.write('</ol>\n\n')
