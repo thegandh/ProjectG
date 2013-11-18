@@ -1,10 +1,15 @@
 #!/usr/bin/python
 
-import csv
+import gdata.spreadsheet.service
+import gdata.spreadsheet.text_db
+import sys
 # Using a template, generate the about.html file
 
-DELIMITER='|'
-QUOTECHAR='^'
+if len(sys.argv) != 2:
+    print "Need the password as the first argument"
+    sys.exit(1)
+
+PASSWORD = sys.argv[1]
 
 faqHeader = """---
 layout: default
@@ -20,32 +25,39 @@ faqTemplate = """
   <div class="col-md-12">
     <h3><a name="faq%s">%s</a></h3>
   </div>
-  <div class="col-md-12">
+  <div class="col-md-8 col-md-offset-1">
     %s
   </div>
+  <div class="col-md-3">&nbsp;</div>
 </div>
 <br />
 """
 
+srcTemplate = """
+<li><a href="#faq%s">%s</a></li>\n
+"""
+
 with open('../about.html','w') as about:
     about.write('')
-with open('../_data/faq.csv', 'rb') as csvFile:
-    faq = csv.reader(csvFile, delimiter=DELIMITER, quotechar=QUOTECHAR)
-    faqCopy = []
-    with open('../about.html','a') as about:
-        about.write(faqHeader)
-        ctr = 0
-        for qa in faq:
-            faqCopy.append(qa)
-            ctr += 1
-            question = qa[0]
-            about.write('<li><a href="#faq%s">%s</a></li>\n'%(ctr,question))
-        about.write('</ul>\n\n')
 
-        ctr = 0
-        for qa in faqCopy:
-            ctr += 1
-            question = qa[0]
-            answer = qa[1]
-            about.write(faqTemplate%(ctr,question,answer))
+sclient = gdata.spreadsheet.service.SpreadsheetsService()
+sclient.ClientLogin('thegandh@gmail.com', PASSWORD)
+key='0Ah-dviLqoUPxdEtYYlowaFJWLXJ2cE85eTFtWTFseFE'
+feed = sclient.GetListFeed(key)
+with open('../about.html','a') as about:
+    about.write(faqHeader)
+    ctr = 0
+    for row in feed.entry:
+        ctr += 1
+        record = gdata.spreadsheet.text_db.Record(row_entry=row)
+        question = record.content['question']
+        about.write(srcTemplate%(ctr,question))
+    about.write('</ul>\n\n')
 
+    ctr = 0
+    for row in feed.entry:
+        ctr += 1
+        record = gdata.spreadsheet.text_db.Record(row_entry=row)
+        question = record.content['question']
+        answer = record.content['answer'].encode('utf-8')
+        about.write(faqTemplate%(ctr,question,answer))

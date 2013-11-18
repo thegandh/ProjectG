@@ -1,10 +1,17 @@
 #!/bin/bash
 
+if [ $# -ne 1 ]; then
+    echo "Need the password as a command line argument"
+    exit
+fi
+
+password=$1
+
 # Create raw content
-./sidebarGenerator.py
-./memberGenerator.py
-./faqGenerator.py
-./sourceGenerator.py
+./sidebarGenerator.py $password
+./memberGenerator.py $password
+./faqGenerator.py $password
+./sourceGenerator.py $password
 
 # Build using liquid/jekyll
 jekyll build -s .. -d ../_site
