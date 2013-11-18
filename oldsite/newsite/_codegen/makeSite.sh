@@ -11,6 +11,7 @@ password=$1
 ./sidebarGenerator.py $password
 ./memberGenerator.py $password
 ./faqGenerator.py $password
+./funfactGenerator.py $password
 ./sourceGenerator.py $password
 
 # Build using liquid/jekyll
@@ -22,7 +23,7 @@ for member in $allNames; do
     mv ../_site/$member/index.html ../_site/$member.html
     rm -rf ../_site/$member
 done
-for file in about sources; do
+for file in about sources funfacts; do
     mv ../_site/$file/index.html ../_site/$file.html
     rm -rf ../_site/$file
 done

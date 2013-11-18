@@ -19,14 +19,14 @@ bio: %s
 pic: "%s.jpg"
 ---
 
-  <div class="col-md-8 col-md-offset-1">
+  <div class="col-md-8 col-md-offset-3">
     <ul>
 """
 
 personFooter = """
     </ul>
   </div>
-  <div class="col-md-3">&nbsp;</div>
+  <div class="col-md-1">&nbsp;</div>
 """
 
 gandhTemplate = """
