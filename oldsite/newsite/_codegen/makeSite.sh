@@ -28,3 +28,7 @@ for file in about sources funfacts; do
     rm -rf ../_site/$file
 done
 
+# Move all the files to the correct locations
+cp ../_site/*.html ../../..
+cp ../_includes/* ../../../_includes/
+cp ../_layouts/* ../../../_layouts/

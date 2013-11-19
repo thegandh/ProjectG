@@ -52,18 +52,17 @@ for row in feed.entry:
         memberDetailFeed = sclient.GetListFeed(docKey)
         for memberPoint in memberDetailFeed.entry:
             mRecord = gdata.spreadsheet.text_db.Record(row_entry=memberPoint)
-            if not mRecord.content['point']:
-                continue
-            point = mRecord.content['point'].encode('utf-8')
-            blurb = mRecord.content['blurb'].encode('utf-8')
-            source = ''
-            if mRecord.content['source']:
-                source = mRecord.content['source'].encode('utf-8')
-            detail = ''
-            if mRecord.content['detail']:
-                detail = mRecord.content['detail'].encode('utf-8')
-                if len(detail) >0:
-                    detail = '('+detail+')'
-            memberFile.write(gandhTemplate%(point, blurb, source, source, detail))
+            if mRecord.content['point']:
+                point = mRecord.content['point'].encode('utf-8')
+                blurb = mRecord.content['blurb'].encode('utf-8')
+                source = ''
+                if mRecord.content['source']:
+                    source = mRecord.content['source'].encode('utf-8')
+                detail = ''
+                if mRecord.content['detail']:
+                    detail = mRecord.content['detail'].encode('utf-8')
+                    if len(detail) >0:
+                        detail = '('+detail+')'
+                memberFile.write(gandhTemplate%(point, blurb, source, source, detail))
 
         memberFile.write(personFooter)
