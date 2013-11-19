@@ -52,6 +52,8 @@ for row in feed.entry:
         memberDetailFeed = sclient.GetListFeed(docKey)
         for memberPoint in memberDetailFeed.entry:
             mRecord = gdata.spreadsheet.text_db.Record(row_entry=memberPoint)
+            if not mRecord.content['point']:
+                continue
             point = mRecord.content['point'].encode('utf-8')
             blurb = mRecord.content['blurb'].encode('utf-8')
             source = ''
