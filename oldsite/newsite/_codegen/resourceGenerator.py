@@ -19,11 +19,11 @@ title: Resources
 
 <div class="row">
   <div class="col-md-8">
-    <ol>
+    <ul>
 """
 
 resourceFooter = """
-    </ol>
+    </ul>
   </div>
 </div>
 """
@@ -46,5 +46,5 @@ with open('../resources.html','a') as resource:
         title = record.content['title'].encode('utf-8')
         author = record.content['author'].encode('utf-8')
         resource.write(resourceTemplate%(shortKey, shortKey, title, author))
-    resource.write('</ol>\n\n')
+    resource.write('</ul>\n\n')
  
