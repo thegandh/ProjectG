@@ -3,7 +3,7 @@
 import gdata.spreadsheet.service
 import gdata.spreadsheet.text_db
 import sys
-# Using a template, generate the source.html file
+# Using a template, generate the resource.html file
 
 if len(sys.argv) != 2:
     print "Need the password as the first argument"
@@ -11,40 +11,40 @@ if len(sys.argv) != 2:
 
 PASSWORD = sys.argv[1]
 
-sourceHeader = """---
+resourceHeader = """---
 layout: default
-title: Sources
+title: Resources
 ---
-<div><h1>Sources</h1></div>
+<div><h1>Resources</h1></div>
 
 <div class="row">
   <div class="col-md-8">
     <ol>
 """
 
-sourceFooter = """
+resourceFooter = """
     </ol>
   </div>
 </div>
 """
 
-sourceTemplate = """<li> <a name="%s">[%s]</a> <i>%s</i> %s </li> \n """
+resourceTemplate = """<li> <a name="%s">[%s]</a> <i>%s</i> %s </li> \n """
 
-with open('../sources.html','w') as source:
-    source.write('')
+with open('../resources.html','w') as resource:
+    resource.write('')
 
 sclient = gdata.spreadsheet.service.SpreadsheetsService()
 sclient.ClientLogin('thegandh@gmail.com', PASSWORD)
 key='0Ah-dviLqoUPxdGp3aXNGLXNJRnN5VkR3SzhsY3hlTXc'
 feed = sclient.GetListFeed(key)
 mySourceList = []
-with open('../sources.html','a') as source:
-    source.write(sourceHeader)
+with open('../resources.html','a') as resource:
+    resource.write(resourceHeader)
     for row in feed.entry:
         record = gdata.spreadsheet.text_db.Record(row_entry=row)
         shortKey = record.content['shortkey']
         title = record.content['title'].encode('utf-8')
         author = record.content['author'].encode('utf-8')
-        source.write(sourceTemplate%(shortKey, shortKey, title, author))
-    source.write('</ol>\n\n')
+        resource.write(resourceTemplate%(shortKey, shortKey, title, author))
+    resource.write('</ol>\n\n')
  

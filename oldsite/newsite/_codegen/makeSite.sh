@@ -12,7 +12,7 @@ password=$1
 ./memberGenerator.py $password
 ./faqGenerator.py $password
 ./funfactGenerator.py $password
-./sourceGenerator.py $password
+./resourceGenerator.py $password
 
 # Build using liquid/jekyll
 jekyll build -s .. -d ../_site
