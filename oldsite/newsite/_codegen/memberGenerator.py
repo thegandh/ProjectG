@@ -32,7 +32,7 @@ personFooter = """
 gandhTemplate = """
     <li>
       <p class="lead">%s</p>
-      <p>%s</p> <a href="sources.html#%s">Source: %s %s</a>
+      <p>%s</p> {<a href="sources.html#%s">Source: %s %s</a>}
     </li>
     <br />
 """
