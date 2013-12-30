@@ -3,7 +3,7 @@
 import gdata.spreadsheet.service
 import gdata.spreadsheet.text_db
 import sys
-# Using a template, generate the about.html file
+# Using a template, generate the faq.html file
 
 if len(sys.argv) != 2:
     print "Need the password as the first argument"
@@ -13,9 +13,9 @@ PASSWORD = sys.argv[1]
 
 faqHeader = """---
 layout: default
-title: About
+title: Frequently Asked Questions
 ---
-<div><h1>About</h1></div>
+<div><h1>Frequently Asked Questions</h1></div>
 
 <ul>
 """
@@ -37,22 +37,22 @@ srcTemplate = """
 <li><a href="#faq%s">%s</a></li>\n
 """
 
-with open('../about.html','w') as about:
-    about.write('')
+with open('../faq.html','w') as faq:
+    faq.write('')
 
 sclient = gdata.spreadsheet.service.SpreadsheetsService()
 sclient.ClientLogin('thegandh@gmail.com', PASSWORD)
 key='0Ah-dviLqoUPxdEtYYlowaFJWLXJ2cE85eTFtWTFseFE'
 feed = sclient.GetListFeed(key)
-with open('../about.html','a') as about:
-    about.write(faqHeader)
+with open('../faq.html','a') as faq:
+    faq.write(faqHeader)
     ctr = 0
     for row in feed.entry:
         ctr += 1
         record = gdata.spreadsheet.text_db.Record(row_entry=row)
         question = record.content['question']
-        about.write(srcTemplate%(ctr,question))
-    about.write('</ul>\n\n')
+        faq.write(srcTemplate%(ctr,question))
+    faq.write('</ul>\n\n')
 
     ctr = 0
     for row in feed.entry:
@@ -60,4 +60,4 @@ with open('../about.html','a') as about:
         record = gdata.spreadsheet.text_db.Record(row_entry=row)
         question = record.content['question']
         answer = record.content['answer'].encode('utf-8')
-        about.write(faqTemplate%(ctr,question,answer))
+        faq.write(faqTemplate%(ctr,question,answer))
