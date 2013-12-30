@@ -28,7 +28,7 @@ resourceFooter = """
 </div>
 """
 
-resourceTemplate = """<li> <a name="%s">[%s]</a> <i>%s</i> %s </li> \n """
+resourceTemplate = """<li> <a name="%s">[%s]</a> <i>%s</i> %s </li> <br> \n """
 
 with open('../resources.html','w') as resource:
     resource.write('')
